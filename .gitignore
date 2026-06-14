@@ -29,3 +29,7 @@ app/my-legado.jks
 # Build outputs
 app/build/
 modules/*/build/
+
+# Codex CLI / SpecKit local config
+.agents/
+.specify/
