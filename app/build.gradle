@@ -1,17 +1,11 @@
 plugins {
-//    id "com.android.application"
-//    id 'org.jetbrains.kotlin.android'
-//    id 'kotlin-parcelize'
-//    //id 'kotlin-kapt'
-//    id 'com.google.devtools.ksp'
-//    id "com.google.gms.google-services"
-
     alias libs.plugins.android.application
     alias libs.plugins.kotlin.android
     alias libs.plugins.kotlin.parcelize
     alias libs.plugins.room
     alias libs.plugins.ksp
-    alias libs.plugins.google.services
+    // Firebase 已在 fork 中禁用，如需启用请同时恢复 app/google-services.json
+    // alias libs.plugins.google.services
 }
 apply from: 'download.gradle'
 
@@ -25,7 +19,7 @@ def gitCommits = Integer.parseInt('git rev-list HEAD --count'.execute().text.tri
 
 android {
     compileSdk = compile_sdk_version
-    namespace = 'io.legado.app'
+    namespace = 'top.overlink.read'
     kotlin {
         jvmToolchain {
             languageVersion.set(JavaLanguageVersion.of(17))
@@ -47,7 +41,7 @@ android {
         }
     }
     defaultConfig {
-        applicationId "io.legado.app"
+        applicationId "top.overlink.read"
         minSdk 21
         targetSdk 36
         versionCode 10000 + gitCommits
@@ -78,11 +72,7 @@ android {
                 signingConfig signingConfigs.myConfig
             }
             applicationIdSuffix '.release'
-            if (getApplicationIdSuffix() == '.releaseA') {
-                manifestPlaceholders.put("app_name", "@string/app_name_a")
-            } else {
-                manifestPlaceholders.put("app_name", "@string/app_name")
-            }
+            manifestPlaceholders.put("app_name", "@string/app_name")
 
             minifyEnabled true
             shrinkResources = true
@@ -155,24 +145,12 @@ android {
 }
 
 dependencies {
-    //compileOnly "com.android.tools.build:gradle:$agp_version"
-    //noinspection GradleDependency,GradlePackageUpdate
-    //coreLibraryDesugaring('com.android.tools:desugar_jdk_libs_nio:2.0.4')
     coreLibraryDesugaring(libs.desugar)
     testImplementation(libs.junit)
     androidTestImplementation(libs.bundles.androidTest)
-    //kotlin
-    //noinspection GradleDependency,DifferentStdlibGradleVersion
     implementation(libs.kotlin.stdlib)
-    //Kotlin反射
-    //noinspection GradleDependency,DifferentStdlibGradleVersion
-    //implementation(libs.kotlin.reflect)
 
-
-    //协程
-    //def coroutines_version = '1.7.3'
     implementation(libs.bundles.coroutines)
-
 
     //图像处理库Toolkit
     implementation(libs.renderscript.intrinsics.replacement.toolkit)
@@ -201,22 +179,17 @@ dependencies {
 
     //media
     implementation(libs.media.media)
-    // For media playback using ExoPlayer
     implementation(libs.media3.exoplayer)
-    // For loading data using the OkHttp network stack
     implementation(libs.media3.datasource.okhttp)
-    // For exposing and controlling media sessions
-    //implementation "androidx.media3:media3-session:$media3_version"
 
     //Splitties
     implementation(libs.splitties.appctx)
     implementation(libs.splitties.systemservices)
     implementation(libs.splitties.views)
 
-    //room sql语句不高亮解决方法https://issuetracker.google.com/issues/234612964#comment6
+    //room
     implementation(libs.room.runtime)
     implementation(libs.room.ktx)
-    //kapt("androidx.room:room-compiler:$room_version")
     ksp(libs.room.compiler)
     androidTestImplementation(libs.room.testing)
 
@@ -230,8 +203,6 @@ dependencies {
     implementation(project(path: ':modules:book'))
     implementation(project(path: ':modules:rhino'))
 
-    //JS rhino
-
     //网络
     implementation(libs.okhttp)
     implementation(fileTree(dir: 'cronetlib', include: ['*.jar', '*.aar']))
@@ -244,7 +215,6 @@ dependencies {
 
     //Svg
     implementation(libs.androidsvg)
-    //Glide svg plugin
     implementation(libs.glide.svg)
 
     //webServer
@@ -252,7 +222,6 @@ dependencies {
     implementation(libs.nanohttpd.websocket)
 
     //二维码
-    //noinspection GradleDependency
     implementation(libs.zxing.lite)
 
     //颜色选择
@@ -274,19 +243,13 @@ dependencies {
     implementation(libs.quick.chinese.transfer.core)
 
     //加解密类库,有些书源使用
-    //noinspection GradleDependency,GradlePackageUpdate
     implementation(libs.hutool.crypto)
 
-    //firebase, 崩溃统计和性能统计
-    implementation platform(libs.firebase.bom)
-    implementation libs.firebase.analytics
-    implementation libs.firebase.perf
+    // Firebase 已在 fork 中禁用，如需启用请添加：
+    // implementation platform(libs.firebase.bom)
+    // implementation libs.firebase.analytics
+    // implementation libs.firebase.perf
 
     implementation libs.glide.recyclerview
-
-    //LeakCanary, 内存泄露检测
-    //debugImplementation('com.squareup.leakcanary:leakcanary-android:2.7')
-
-    //com.github.AmrDeveloper:CodeView代码编辑已集成到应用内
-    //epubLib集成到应用内
 }
+

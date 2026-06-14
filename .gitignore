@@ -14,5 +14,18 @@ node_modules/
 /app/gradle.properties
 package-lock.json
 .idea/
-# Kotlin 2.0
 .kotlin/
+
+# Release keystore（绝不能进仓库）
+*.jks
+*.keystore
+app/release.jks
+app/legado.jks
+app/my-legado.jks
+
+# Gradle 临时签名前缀（CI 注入的）
+# 注：根 gradle.properties 仍受版本控制，CI 用 >> 追加不会污染
+
+# Build outputs
+app/build/
+modules/*/build/

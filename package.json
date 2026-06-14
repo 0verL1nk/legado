@@ -1,28 +1,23 @@
 {
   "name": "legado",
   "version": "1.0.0",
+  "private": true,
+  "description": "Legado (开源阅读) - maintained fork",
+  "scripts": {
+    "test": "echo \"No top-level test defined; see app/src/test\" && exit 0"
+  },
   "devDependencies": {
-    "cz-conventional-changelog": "^3.1.0"
+    "cz-conventional-changelog": "^3.3.0"
   },
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
   },
-  "description": "[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gedoor/legado.git"
+    "url": "https://github.com/0verL1nk/legado.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/gedoor/legado/issues"
-  },
-  "homepage": "https://github.com/gedoor/legado#readme"
+  "homepage": "https://github.com/0verL1nk/legado#readme",
+  "license": "ISC"
 }
