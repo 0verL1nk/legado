@@ -54,3 +54,8 @@ Run from the repository root unless noted.
 - Version bumps happen in `gradle/libs.versions.toml`; several entries carry `#noinspection` comments warning against upgrades — read those notes before changing a pinned version.
 - Cronet jars in `app/cronetlib/` are vendored; updates flow through `.github/workflows/cronet.yml` and `app/download.gradle`.
 - Release APK output is `legado_app_<versionName>.apk`; release builds require the `RELEASE_STORE_FILE`, `RELEASE_STORE_PASSWORD`, `RELEASE_KEY_ALIAS`, and `RELEASE_KEY_PASSWORD` Gradle properties.
+
+<!-- SPECKIT START -->
+For additional context about technologies to be used, project structure,
+shell commands, and other important information, read the current plan
+<!-- SPECKIT END -->

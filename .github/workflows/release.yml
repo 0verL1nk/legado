@@ -58,11 +58,13 @@ jobs:
       - name: Publish GitHub Release
         uses: softprops/action-gh-release@v2
         with:
-          name: legado_${{ github.run_number }}
-          tag_name: v${{ github.run_number }}
+          name: 读阅 v1.0.${{ github.run_number }}
+          tag_name: v1.0.${{ github.run_number }}
           body_path: ${{ github.workspace }}/CHANGELOG.md
           draft: false
           prerelease: false
           files: ${{ github.workspace }}/apk/legado_app_*.apk
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+
