@@ -52,7 +52,7 @@ jobs:
       - name: Upload App To Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: legado-release
+          name: 读阅-release
           path: ${{ github.workspace }}/apk/*.apk
 
       - name: Publish GitHub Release
@@ -63,8 +63,10 @@ jobs:
           body_path: ${{ github.workspace }}/CHANGELOG.md
           draft: false
           prerelease: false
-          files: ${{ github.workspace }}/apk/legado_app_*.apk
+          files: ${{ github.workspace }}/apk/*.apk
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+
 
 
